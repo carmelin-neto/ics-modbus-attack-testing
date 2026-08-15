@@ -73,6 +73,6 @@ uniform behavior across a fleet of PLCs.
 
 ## Screenshots
 
-[![Write test result](screenshots/write-test.png)
-![ARP table - arp -n](screenshots/arp-n.png)
-![ARP table - /proc/net/arp](screenshots/arp.png)]
+[![Write test result](file:///home/linomcgenius/Downloads/Screenshot_write%20test.pngots/write-test.png)
+![ARP table - arp -n](file:///home/linomcgenius/Downloads/Screenshot_arp%20-n%20.png)
+![ARP table - /proc/net/arp](file:///home/linomcgenius/Downloads/Screenshot%20%20%E2%81%84proc%20%E2%81%84net%20%E2%81%84arp.png)]
