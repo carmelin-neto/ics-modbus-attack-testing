@@ -6,8 +6,8 @@ industrial control traffic actually work in practice: (1) directly writing
 a fabricated value into a live sensor reading, and (2) intercepting 
 PLC-to-device traffic via ARP spoofing. This project demonstrates hands-on 
 attack testing against a simulated OT environment, building on the 
-segmentation design from my [Purdue Model Mapping project](https://github.com/carmelin-neto/ot-purdue-model-mapping) 
-and the theoretical risks covered in my [Scanning Risk Writeup](https://github.com/carmelin-neto/ot-active-scanning-risk).
+segmentation design from my [Purdue Model Mapping project](https://github.com/carmelin-neto/ot-purdue-model-mapping/blob/main/screenshots/purdue-model-oilgas..drawio.png) 
+and the theoretical risks covered in my [Scanning Risk Writeup]().
 
 ## Why This Project
 It's one thing to explain why OT attacks are risky in theory — it's another 
