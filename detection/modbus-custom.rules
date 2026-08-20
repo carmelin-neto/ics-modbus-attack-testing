@@ -1,0 +1,1 @@
+alert modbus any any -> 192.168.95.14 any (msg:"Unauthorized Modbus write attempt to field device"; modbus: unit 1, function 6; sid:9000001; rev:1;)
