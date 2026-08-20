@@ -85,6 +85,13 @@ Validated two ways:
 4. Verified the spoofing attempt's actual effect by directly inspecting the 
    PLC's ARP cache, rather than assuming success from the tool running 
    without errors.
+   5. Built and validated a Suricata IDS rule targeting the exact Modbus 
+   write attack tested above (unit 1, function 6). Discovered mid-build 
+   that traffic between the attacker and the target device doesn't pass 
+   through the PLC — it routes through the router — and adjusted the 
+   capture point accordingly. Confirmed the rule fires on the write-attack 
+   traffic and stays silent on 67,457 packets of legitimate read-only 
+   traffic.
 
 ## Findings
 
@@ -117,6 +124,13 @@ replies against genuine ARP requests rather than sending gratuitous ones),
 and would need to map which specific Modbus function codes and register 
 types are writable on the actual devices in scope, rather than assuming 
 uniform behavior across a fleet of PLCs.
+
+The Suricata rule built here is also narrowly scoped — it detects writes 
+to one specific device and function code, not a general ruleset. Production 
+deployment would need coverage across every field device and function code 
+that shouldn't be writable, plus source-based filtering (e.g., alerting 
+only on writes originating outside the known engineering workstation 
+range) rather than function-code matching alone.
 
 ## Screenshots
 
