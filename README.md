@@ -49,6 +49,29 @@ I validated it two ways:
 This closes the loop between offense and defense: I didn't just run an 
 attack and observe the result — I built and validated a way to detect it.
 
+## IDS Detection with Suricata
+
+To complement the custom ARP detection script, I built and tested a 
+Suricata rule targeting the Modbus write attack specifically:
+This uses Suricata's native Modbus protocol parser — not a port-based 
+guess — to match the exact function code (6, Write Single Register) used 
+in my earlier write-attack test, targeting the specific field device.
+
+**Getting a working capture for this took real troubleshooting**: my first 
+attempts captured on the wrong network segment (the PLC container isn't 
+actually in the traffic path between the attacker and this specific 
+device — the router is). Once I captured on the router's ICS-facing 
+interface instead, the traffic — and the alert — showed up correctly.
+
+Validated two ways:
+
+1. **Against the write-attack traffic** — Suricata correctly fired:
+   ![Suricata alert on the write attack](screenshots/suricata-alert.png)
+
+2. **Against 67,457 packets of legitimate read-only traffic** — zero 
+   alerts, confirming the rule doesn't false-positive on normal operation:
+   ![No alerts on clean traffic](screenshots/suricata-clean.png)
+
 ## What I Did
 1. Captured live Modbus traffic directly from the PLC container to identify 
    which of six field devices carried an actively-changing sensor value 
