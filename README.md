@@ -72,6 +72,30 @@ Validated two ways:
    alerts, confirming the rule doesn't false-positive on normal operation:
    ![No alerts on clean traffic](screenshots/suricata-clean.png)
 
+   ## SIEM & Alerting with Splunk
+
+To complete the detection pipeline, I brought the Suricata alert data into 
+Splunk and configured it as a real, scheduled alert — not just a saved 
+search.
+
+**Search:**
+I initially scheduled this to run every 5 minutes to validate the full 
+pipeline quickly, confirmed it fired correctly and repeatedly on real data, 
+then relaxed the schedule back to a production-appropriate interval.
+
+**One licensing detail worth noting**: Splunk's Enterprise Trial license 
+runs 60 days, after which it converts to a Free license that disables 
+scheduled alerting entirely (search and dashboards still work). I built 
+and validated this alert early in the trial window specifically to make 
+sure the working functionality was demonstrated and documented before that 
+constraint applied.
+
+**Evidence:**
+
+![Alert firing repeatedly on schedule](screenshots/splunk-alert-triggered.png)
+
+![Matched event detail behind a trigger](screenshots/splunk-alert-results.png)
+
 ## What I Did
 1. Captured live Modbus traffic directly from the PLC container to identify 
    which of six field devices carried an actively-changing sensor value 
@@ -85,13 +109,19 @@ Validated two ways:
 4. Verified the spoofing attempt's actual effect by directly inspecting the 
    PLC's ARP cache, rather than assuming success from the tool running 
    without errors.
-   5. Built and validated a Suricata IDS rule targeting the exact Modbus 
+5. Built and validated a Suricata IDS rule targeting the exact Modbus 
    write attack tested above (unit 1, function 6). Discovered mid-build 
    that traffic between the attacker and the target device doesn't pass 
    through the PLC — it routes through the router — and adjusted the 
    capture point accordingly. Confirmed the rule fires on the write-attack 
    traffic and stays silent on 67,457 packets of legitimate read-only 
    traffic.
+6. Ingested the Suricata alert data into Splunk Enterprise (Docker) and 
+   built a scheduled correlation search matching the exact alert signature. 
+   Configured it as a real alert, tested it firing repeatedly on a tight 
+   schedule to confirm the whole pipeline (search → trigger → triggered 
+   alert) worked end-to-end, then relaxed the schedule back to a sensible 
+   production cadence once validated.
 
 ## Findings
 
@@ -131,6 +161,11 @@ deployment would need coverage across every field device and function code
 that shouldn't be writable, plus source-based filtering (e.g., alerting 
 only on writes originating outside the known engineering workstation 
 range) rather than function-code matching alone.
+
+This alert is built on a single static log file uploaded once — a 
+production deployment would use a live forwarder (Splunk Universal 
+Forwarder or HEC) to stream Suricata's fast.log continuously, and the 
+correlation search would need to cover the full ruleset, not one signature.
 
 ## Screenshots
 
