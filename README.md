@@ -10,6 +10,7 @@ segmentation design from my [Purdue Model Mapping project](https://github.com/ca
 and the theoretical risks covered in my [Scanning Risk Writeup](https://github.com/carmelin-neto/ot-active-scanning-risk).
 The Suricata rule and Splunk alert built here are the detection stack referenced throughout my [ot-incident-response-scenario](https://github.com/carmelin-neto/ot-incident-response-scenario)
 The Modbus exposure demonstrated here is scored formally in [ot-risk-assessment](https://github.com/carmelin-neto/ot-risk-assessment) and confirmed independently in [ot-vulnerability-assessment](https://github.com/carmelin-neto/ot-vulnerability-assessment).
+The write attack demonstrated here is blocked a second, independent way in [ot-access-control-design](https://github.com/carmelin-neto/ot-access-control-design) — via role permissions rather than network controls.
 
 ## Why This Project
 It's one thing to explain why OT attacks are risky in theory — it's another 
