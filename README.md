@@ -8,7 +8,7 @@ PLC-to-device traffic via ARP spoofing. This project demonstrates hands-on
 attack testing against a simulated OT environment, building on the 
 segmentation design from my [Purdue Model Mapping project](https://github.com/carmelin-neto/ot-purdue-model-mapping/blob/main/screenshots/purdue-model-oilgas..drawio.png) 
 and the theoretical risks covered in my [Scanning Risk Writeup](https://github.com/carmelin-neto/ot-active-scanning-risk).
-The Suricata rule and Splunk alert built here are the detection stack referenced throughout my (https://github.com/carmelin-neto/ot-incident-response-scenario)
+The Suricata rule and Splunk alert built here are the detection stack referenced throughout my [ot-incident-response-scenario](https://github.com/carmelin-neto/ot-incident-response-scenario)
 The Modbus exposure demonstrated here is scored formally in [ot-risk-assessment](https://github.com/carmelin-neto/ot-risk-assessment) and confirmed independently in [ot-vulnerability-assessment](https://github.com/carmelin-neto/ot-vulnerability-assessment).
 
 ## Why This Project
