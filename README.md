@@ -11,6 +11,7 @@ and the theoretical risks covered in my [Scanning Risk Writeup](https://github.c
 The Suricata rule and Splunk alert built here are the detection stack referenced throughout my [ot-incident-response-scenario](https://github.com/carmelin-neto/ot-incident-response-scenario)
 The Modbus exposure demonstrated here is scored formally in [ot-risk-assessment](https://github.com/carmelin-neto/ot-risk-assessment) and confirmed independently in [ot-vulnerability-assessment](https://github.com/carmelin-neto/ot-vulnerability-assessment).
 The write attack demonstrated here is blocked a second, independent way in [ot-access-control-design](https://github.com/carmelin-neto/ot-access-control-design) — via role permissions rather than network controls.
+The Suricata alert generated here is ingested into a real SIEM and triaged by a local AI model in [home-soc-ai-triage](https://github.com/carmelin-neto/home-soc-ai-triage) — including a critical check of where the AI's triage got it wrong.
 
 ## Why This Project
 It's one thing to explain why OT attacks are risky in theory — it's another 
